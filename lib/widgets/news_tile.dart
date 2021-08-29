@@ -33,7 +33,8 @@ class NewsTile extends StatelessWidget {
               url: url,
               content: content,
               author: author,
-              publishedAt: publishedAt),
+              publishedAt: publishedAt,
+              ),
         );
       },
       child: Container(

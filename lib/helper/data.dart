@@ -1,4 +1,5 @@
 import 'package:news_app/models/category_model.dart';
+import 'package:flutter/material.dart';
 
 List<CategoryModel> getCategories() {
   List<CategoryModel> categories = [];
@@ -29,9 +30,56 @@ List<CategoryModel> getCategories() {
       imageUrl:
           'https://images.unsplash.com/photo-1484482340112-e1e2682b4856?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=755&q=80'));
   categories.add(CategoryModel(
-      categoryName: 'Tech',
+      categoryName: 'Technology',
       imageUrl:
           'https://images.unsplash.com/photo-1518770660439-4636190af475?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80'));
 
   return categories;
+}
+
+Icon getIcon(String category) {
+  switch (category) {
+    case 'business':
+      return Icon(
+        Icons.business_center_outlined,
+        color: Colors.red,
+      );
+
+    case 'entertainment':
+      return Icon(
+        Icons.ondemand_video_outlined,
+        color: Colors.red,
+      );
+
+    case 'general':
+      return Icon(
+        Icons.extension_outlined,
+        color: Colors.red,
+      );
+    case 'health':
+      return Icon(
+        Icons.local_hospital_outlined,
+        color: Colors.red,
+      );
+    case 'science':
+      return Icon(
+        Icons.all_inclusive_outlined,
+        color: Colors.red,
+      );
+    case 'sports':
+      return Icon(
+        Icons.directions_run_outlined,
+        color: Colors.red,
+      );
+    case 'technology':
+      return Icon(
+        Icons.important_devices_outlined,
+        color: Colors.red,
+      );
+    default:
+      return Icon(
+        Icons.list,
+        color: Colors.red,
+      );
+  }
 }

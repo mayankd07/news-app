@@ -25,8 +25,8 @@ class _HomeState extends State<Home> {
     getNewsArticles();
   }
 
-  getNewsArticles() async {
-    News newsObject = News();
+  void getNewsArticles() async {
+    News newsObject = News(country: 'in');
     await newsObject.getNews();
     newsArticles = newsObject.news;
     setState(() {

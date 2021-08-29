@@ -6,6 +6,7 @@ import 'package:news_app/models/news_article_model.dart';
 import 'package:news_app/helper/news.dart';
 import '../widgets/news_tile.dart';
 import '../widgets/show_loading.dart';
+import 'package:news_app/widgets/app_bar.dart';
 
 class Home extends StatefulWidget {
   static const id = 'home';
@@ -29,8 +30,6 @@ class _HomeState extends State<Home> {
     await newsObject.getNews();
     newsArticles = newsObject.news;
     setState(() {
-      // Here you can write your code for open new view
-      // sleep(Duration(seconds: 10));
       _loading = false;
     });
   }
@@ -38,26 +37,10 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0.0,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'News ',
-              style: TextStyle(color: Colors.red[300]),
-            ),
-            Row(
-              children: [
-                Text(
-                  'Fuse',
-                  style: TextStyle(color: Colors.red[300]),
-                ),
-                Icon(Icons.lightbulb_outline, color: Colors.red[300]),
-              ],
-            ),
-          ],
-        ),
+      appBar: MyAppBar(
+        appBar: AppBar(),
+        paddingLeft: 0,
+        actions: [],
       ),
       body: _loading
           ? ShowLoading()
@@ -97,7 +80,6 @@ class _HomeState extends State<Home> {
                               url: newsArticles[index].url,
                               publishedAt: newsArticles[index].publishedAt,
                               content: newsArticles[index].content,
-
                             );
                           }),
                     )

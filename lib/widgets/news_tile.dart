@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/views/article_view.dart';
+import 'package:news_app/helper/constants.dart';
 
 class NewsTile extends StatelessWidget {
   final String newsTitle,
@@ -22,15 +23,18 @@ class NewsTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, ArticleView.id,
-            arguments: ScreenArguments(
-                title: newsTitle,
-                imageUrl: imageUrl,
-                description: newsDescription,
-                url: url,
-                content: content,
-                author: author,
-                publishedAt: publishedAt));
+        Navigator.pushNamed(
+          context,
+          ArticleView.id,
+          arguments: ScreenArguments(
+              title: newsTitle,
+              imageUrl: imageUrl,
+              description: newsDescription,
+              url: url,
+              content: content,
+              author: author,
+              publishedAt: publishedAt),
+        );
       },
       child: Container(
         margin: EdgeInsets.only(bottom: 0),
@@ -43,9 +47,10 @@ class NewsTile extends StatelessWidget {
                 image: NetworkImage(imageUrl),
                 placeholder: AssetImage('assets/images/newsPlaceholder.jpg'),
                 imageErrorBuilder: (context, error, stackTrace) {
-                  return Image.asset('assets/images/newsPlaceholder.jpg',
-                      fit: BoxFit.fitWidth,
-                      );
+                  return Image.asset(
+                    'assets/images/newsPlaceholder.jpg',
+                    fit: BoxFit.fitWidth,
+                  );
                 },
                 fit: BoxFit.fitWidth,
               ),
@@ -55,10 +60,7 @@ class NewsTile extends StatelessWidget {
             ),
             Text(
               newsTitle,
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w800,
-              ),
+              style: kNewsTitleStyle,
             ),
             SizedBox(
               height: 8,

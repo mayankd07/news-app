@@ -1,16 +1,59 @@
+import 'dart:async';
+import 'package:news_app/widgets/app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
-class WebView extends StatefulWidget {
-  
+class WebViewPage extends StatefulWidget {
+  final String url;
+  WebViewPage({required this.url});
+
   @override
-  _WebViewState createState() => _WebViewState();
+  _WebViewPageState createState() => _WebViewPageState();
 }
 
-class _WebViewState extends State<WebView> {
+class _WebViewPageState extends State<WebViewPage> {
+  bool loading = true;
+  final Completer<WebViewController> _completer =
+      Completer<WebViewController>();
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+    return Scaffold(
+      appBar: MyAppBar(
+        appBar: AppBar(),
+
+        paddingLeft: 0,
+        actions: [
+          Opacity(
+            opacity: 0,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Icon(Icons.safety_divider),
+            ),
+          ),
+        ],
+      ),
+      body: Stack(children: [
+        WebView(
+          onPageFinished: (finish) {
+            setState(() {
+              loading = false;
+            });
+          },
+          initialUrl: widget.url,
+          onWebViewCreated: ((WebViewController webViewController) {
+            _completer.complete(webViewController);
+          }),
+        ),
+        loading
+            ? Center(
+                child: SpinKitChasingDots(
+                  color: Colors.red[300],
+                  size: 100,
+                ),
+              )
+            : Stack(),
+      ]),
     );
   }
 }

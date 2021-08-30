@@ -28,6 +28,9 @@ dependencies:
   flutter_spinkit: ^4.1.2
   webview_flutter: ^2.0.12
   recase: ^4.0.0
+  flag: ^5.0.1
+  
+  bottom_navy_bar: ^5.6.0
   
 
 

@@ -83,3 +83,90 @@ Icon getIcon(String category) {
       );
   }
 }
+
+List<Map<String, String>> countries = [
+  {
+    "name": "America",
+    "code": "us",
+  },
+  {
+    "name": "Brazil",
+    "code": "br",
+  },
+  {
+    "name": "China",
+    "code": "cn",
+  },
+  {
+    "name": "England",
+    "code": "gb",
+  },
+  {
+    "name": "France",
+    "code": "fr",
+  },
+  {
+    "name": "Hong Kong",
+    "code": "hk",
+  },
+  {
+    "name": "India",
+    "code": "in",
+  },
+  {
+    "name": "Indonesia",
+    "code": "id",
+  },
+  {
+    "name": "Israel",
+    "code": "il",
+  },
+  {
+    "name": "Italy",
+    "code": "it",
+  },
+  {
+    "name": "Japan",
+    "code": "jp",
+  },
+  {
+    "name": "Mexico",
+    "code": "mx",
+  },
+  {
+    "name": "New Zealand",
+    "code": "nz",
+  },
+  {
+    "name": "Russia",
+    "code": "ru",
+  },
+  {
+    "name": "Saudi Arabia",
+    "code": "sa",
+  },
+  {
+    "name": "Singapore",
+    "code": "sg",
+  },
+  {
+    "name": "South Africa",
+    "code": "za",
+  },
+  {
+    "name": "Switzerland",
+    "code": "ch",
+  },
+  {
+    "name": "Turkey",
+    "code": "tr",
+  },
+  {
+    "name": "Thailand",
+    "code": "th",
+  },
+  {
+    "name": "UAE",
+    "code": "ae",
+  },
+];

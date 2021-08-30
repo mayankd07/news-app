@@ -12,9 +12,10 @@ class News {
 
   Future<void> getNews() async {
     String url =
-        'https://newsapi.org/v2/top-headlines?pageSize=100&country=$country&category=general&apiKey=cdaf1822fcfe44e08812c6010526db5c';
-
+        'https://newsapi.org/v2/top-headlines?pageSize=50&country=$country&category=general&apiKey=cdaf1822fcfe44e08812c6010526db5c';
+   
     http.Response response = await http.get(Uri.parse(url));
+  
 
     var jsonData = jsonDecode(response.body);
 
@@ -30,8 +31,11 @@ class News {
               urlToImage: article['urlToImage'],
               publishedAt: article['publishedAt']);
           news.add(newsArticle);
+          
         }
       });
+    } else {
+      print(jsonData['code']);
     }
   }
 }
@@ -43,12 +47,11 @@ class CategoryNewsClass {
 
   Future<void> getCategoryNews(String category) async {
     String url =
-        'https://newsapi.org/v2/top-headlines?pageSize=100&country=$country&category=$category&apiKey=cdaf1822fcfe44e08812c6010526db5c';
+        'https://newsapi.org/v2/top-headlines?pageSize=50&country=$country&category=$category&apiKey=cdaf1822fcfe44e08812c6010526db5c';
 
     http.Response response = await http.get(Uri.parse(url));
 
     var jsonData = jsonDecode(response.body);
-
     if (jsonData['status'] == 'ok') {
       jsonData['articles'].forEach((article) {
         if (article['urlToImage'] != null && article['description'] != null) {

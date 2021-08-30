@@ -10,7 +10,9 @@ class NewsInforamation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      
       decoration: BoxDecoration(
+        
         border: Border.all(width: 1, color: Colors.black12),
         borderRadius: BorderRadius.circular(5),
       ),
@@ -26,7 +28,7 @@ class NewsInforamation extends StatelessWidget {
             height: 4,
           ),
           Text(
-            infoData == null ? 'Unknown' : infoData,
+            infoData == null || infoData==''? 'Unknown' : infoData,
             style: kNewsInfoDataStyle,
           ),
         ],

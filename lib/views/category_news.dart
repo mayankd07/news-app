@@ -8,7 +8,8 @@ import 'package:recase/recase.dart';
 
 class CategoryNewsPage extends StatefulWidget {
   final String category;
-  CategoryNewsPage({required this.category});
+  final String selectedCountry;
+  CategoryNewsPage({required this.category,required this.selectedCountry});
 
   @override
   _CategoryNewsPageState createState() => _CategoryNewsPageState();
@@ -19,12 +20,12 @@ class _CategoryNewsPageState extends State<CategoryNewsPage> {
   bool _loading = true;
   @override
   void initState() {
-    super.initState();
     getCategoryNews();
+    super.initState();
   }
 
   void getCategoryNews() async {
-    CategoryNewsClass newsObject = CategoryNewsClass(country: 'in');
+    CategoryNewsClass newsObject = CategoryNewsClass(country: widget.selectedCountry);
     await newsObject.getCategoryNews(widget.category);
     articles = newsObject.news;
     setState(() {

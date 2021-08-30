@@ -136,19 +136,23 @@ class ArticleView extends StatelessWidget {
                 ),
                 SizedBox(height: 20),
                 args.url != null
-                    ? InkWell(
-                        child: Text(
-                          'Read Full Article >>',
-                          style: kNewsLinkStyle,
-                        ),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => WebViewPage(url: args.url),
+                    ? Container(
+                        margin: EdgeInsets.only(bottom: 20),
+                        child: InkWell(
+                            child: Text(
+                              'Read Full Article >>',
+                              style: kNewsLinkStyle,
                             ),
-                          );
-                        })
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      WebViewPage(url: args.url),
+                                ),
+                              );
+                            }),
+                      )
                     : Container(),
               ],
             ),

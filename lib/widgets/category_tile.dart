@@ -3,9 +3,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:news_app/views/category_news.dart';
 
 class CategoryTile extends StatelessWidget {
-  final String imageUrl, categoryName;
+  final String imageUrl, categoryName, countryName;
 
-  CategoryTile({required this.imageUrl, required this.categoryName});
+  CategoryTile({required this.imageUrl, required this.categoryName,required this.countryName});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class CategoryTile extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => CategoryNewsPage(category: categoryName.toLowerCase()),
+            builder: (context) => CategoryNewsPage(category: categoryName.toLowerCase(), selectedCountry: countryName,),
           ),
         );
       },

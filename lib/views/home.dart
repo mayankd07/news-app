@@ -25,8 +25,7 @@ class _HomeState extends State<Home> {
   bool _loading = true;
 
   void selectCountry(String country) {
-    print(country);
-    if (country == null) {
+    if (country == null || country==_countrySelected){
       return;
       // country = _countrySelected;
     }
@@ -37,6 +36,7 @@ class _HomeState extends State<Home> {
   }
 
   Future<void> getNewsArticles() async {
+    _loading = true;
     News newsObject = News(country: _countrySelected);
     await newsObject.getNews();
     setState(() {

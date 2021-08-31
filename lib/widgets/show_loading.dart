@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class ShowLoading extends StatelessWidget {
-  const ShowLoading({
-    Key? key,
-  }) : super(key: key);
+  
 
   @override
   Widget build(BuildContext context) {

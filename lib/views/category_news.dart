@@ -24,7 +24,7 @@ class _CategoryNewsPageState extends State<CategoryNewsPage> {
     super.initState();
   }
 
-  void getCategoryNews() async {
+  Future<void> getCategoryNews() async {
     CategoryNewsClass newsObject = CategoryNewsClass(country: widget.selectedCountry);
     await newsObject.getCategoryNews(widget.category);
     articles = newsObject.news;
@@ -35,57 +35,61 @@ class _CategoryNewsPageState extends State<CategoryNewsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: Container(
-          padding: EdgeInsets.only(right: 48),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                widget.category.sentenceCase,
-                style: TextStyle(color: Colors.blue),
-              ),
-              Text(
-                ' News ',
-                style: TextStyle(color: Colors.red),
-              ),
-              getIcon(widget.category.toLowerCase()),
-            ],
+    return  Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          title: Container(
+            padding: EdgeInsets.only(right: 48),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  widget.category.sentenceCase,
+                  style: TextStyle(color: Colors.blue),
+                ),
+                Text(
+                  ' News ',
+                  style: TextStyle(color: Colors.red),
+                ),
+                getIcon(widget.category.toLowerCase()),
+              ],
+            ),
           ),
         ),
-      ),
-      body: _loading
-          ? ShowLoading()
-          : SingleChildScrollView(
-            physics: ScrollPhysics(),
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Column(
-                  children: [
-                    Container(
-                      child: ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: articles.length,
-                          scrollDirection: Axis.vertical,
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            return NewsTile(
-                              imageUrl: articles[index].urlToImage,
-                              newsDescription: articles[index].description,
-                              newsTitle: articles[index].title,
-                              author: articles[index].author,
-                              url: articles[index].url,
-                              publishedAt: articles[index].publishedAt,
-                              content: articles[index].content,
-                            );
-                          }),
+        body: RefreshIndicator(
+          onRefresh:()=> getCategoryNews(),
+          child: _loading
+              ? ShowLoading()
+              : SingleChildScrollView(
+                physics: ScrollPhysics(),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    child: Column(
+                      children: [
+                        Container(
+                          child: ListView.builder(
+                              physics: NeverScrollableScrollPhysics(),
+                              itemCount: articles.length,
+                              scrollDirection: Axis.vertical,
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                return NewsTile(
+                                  imageUrl: articles[index].urlToImage,
+                                  newsDescription: articles[index].description,
+                                  newsTitle: articles[index].title,
+                                  author: articles[index].author,
+                                  url: articles[index].url,
+                                  publishedAt: articles[index].publishedAt,
+                                  content: articles[index].content,
+                                );
+                              }),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
-            ),
+        ),
+   
     );
   }
 }

@@ -25,6 +25,23 @@ class ScreenArguments {
 
 class ArticleView extends StatelessWidget {
   static const id = 'articleView';
+
+  String getNewsContent(String content) {
+    try {
+      return content.substring(0, 200) + '...';
+    } catch (e) {
+      int n = 199;
+      while (n != 0) {
+        try {
+          return content.substring(0, n = n - 1) + '...';
+        } catch (e) {
+          continue;
+        }
+      }
+      return content;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     bool present = true;
@@ -116,21 +133,23 @@ class ArticleView extends StatelessWidget {
                     SizedBox(width: 10),
                     NewsInforamation(
                       infoTitle: 'Published At',
-                      infoData: args.publishedAt
-                          .substring(0, 16)
-                          .replaceAll(RegExp('T'), ' '),
+                      infoData: args.publishedAt != null
+                          ? args.publishedAt
+                              .substring(0, 16)
+                              .replaceAll(RegExp('T'), ' ')
+                          : 'Unknown',
                     )
                   ],
                 ),
                 Divider(height: 20, thickness: 2),
                 Text(
-                  args.description,
+                  args.description == null ? '' : args.description,
                   style: TextStyle(height: 1.3),
                 ),
                 Text(
                   args.content == null
                       ? 'Read full article at the link given below.'
-                      : args.content.substring(0, 200),
+                      : getNewsContent(args.content),
                   overflow: TextOverflow.visible,
                   style: kNewsContentStyle,
                 ),

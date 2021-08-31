@@ -41,9 +41,9 @@ class _WebViewPageState extends State<WebViewPage> {
             });
           },
           initialUrl: widget.url,
-          onWebViewCreated: ((WebViewController webViewController) {
+          onWebViewCreated: (WebViewController webViewController) {
             _completer.complete(webViewController);
-          }),
+          },
         ),
         loading
             ? Center(

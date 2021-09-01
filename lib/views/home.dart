@@ -45,7 +45,7 @@ class _HomeState extends State<Home> {
     });
   }
 
-  void moveToCountryPage() async {
+  Future<void> moveToCountryPage() async {
     final country = await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => CountryPage()),

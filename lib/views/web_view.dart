@@ -21,7 +21,6 @@ class _WebViewPageState extends State<WebViewPage> {
     return Scaffold(
       appBar: MyAppBar(
         appBar: AppBar(),
-
         paddingLeft: 0,
         actions: [
           Opacity(
@@ -46,11 +45,18 @@ class _WebViewPageState extends State<WebViewPage> {
           },
         ),
         loading
-            ? Center(
-                child: SpinKitChasingDots(
-                  color: Colors.red[300],
-                  size: 100,
-                ),
+            ? Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SpinKitChasingDots(
+                    color: Colors.red[300],
+                    size: 100,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text('Loading...')
+                ],
               )
             : Stack(),
       ]),

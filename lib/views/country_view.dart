@@ -54,15 +54,30 @@ class _CountryPageState extends State<CountryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.grey[300],
-        appBar: MyAppBar(appBar: AppBar(), paddingLeft: 0, actions: [
-          Opacity(
-            opacity: 0,
-            child: Container(
-              padding: EdgeInsets.only(left: 22),
-              child: Icon(Icons.ac_unit),
-            ),
-          )
-        ]),
+        appBar: AppBar(
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Select ',
+                style: TextStyle(color: Colors.blue),
+              ),
+              Text(
+                'Country',
+                style: TextStyle(color: Colors.red),
+              ),
+            ],
+          ),
+          actions: [
+            Opacity(
+              opacity: 0,
+              child: Container(
+                padding: EdgeInsets.only(right: 22),
+                child: Icon(Icons.ac_unit),
+              ),
+            )
+          ],
+        ),
         body: CustomScrollView(
           slivers: <Widget>[
             SliverGrid.count(
